@@ -1,5 +1,5 @@
 window.onload = function () {
-    //TODO: ADICIONAR MAIS BOTOES PARA DAR RESET OU METER CADEIRAS NOVAS E LIMPAR O ARRAY E ADICIONAR EXCEÇÃO PARA NEGATIVOS OU VAZIOS
+    //TODO: ADICIONAR EXCEÇÃO PARA NEGATIVOS OU VAZIOS
     var ectsArray = [];
     var notasArray = [];
     var resultado = [];
@@ -30,7 +30,6 @@ window.onload = function () {
     document.getElementById("adicionar2").style.display = "none"
     document.getElementById("vazio").style.display = "none"
     document.getElementById("vazio2").style.display = "none"
-    document.getElementById("vazio3").style.display = "none"
     document.getElementById("adicionar2").style.display = "none"
     document.getElementById("media").style.display = "none"
 
@@ -68,48 +67,45 @@ window.onload = function () {
             notasArray.push(notasValores);
             resultado.push(ectsArray[i-1] * notasArray[i-1]);
         }
-        //TODO FAZER O MESMO COM AS NOTAS NA LINHA ABAIXO
         if (ectsArray.includes("")){
             console.log("vazios")
             document.getElementById("media").style.display = "none"
             document.getElementById("vazio").style.display = "flex"
             document.getElementById("vazio2").style.display = "flex"
-            document.getElementById("vazio3").style.display = "flex"
         } else {
-            console.log("cheios")
             document.getElementById("vazio").style.display = "none"
             document.getElementById("vazio2").style.display = "none"
-            document.getElementById("vazio3").style.display = "none"
             var somaEcts = ectsArray.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue), 0);
             var somaTudo = resultado.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue), 0);
             console.log(somaTudo)
             console.log(somaEcts)
             final = somaTudo/somaEcts
             console.log(final)
-            document.getElementById("media").style.display = "block"
-            document.getElementById("media").innerHTML = "A tua média é " + final;
         }
         if (notasArray.includes("")){
             console.log("vazios")
             document.getElementById("media").style.display = "none"
             document.getElementById("vazio").style.display = "flex"
             document.getElementById("vazio2").style.display = "flex"
-            document.getElementById("vazio3").style.display = "flex"
         } else {
-            console.log("cheios")
+            console.log(final)
             document.getElementById("vazio").style.display = "none"
             document.getElementById("vazio2").style.display = "none"
-            document.getElementById("vazio3").style.display = "none"
             var somaEcts = ectsArray.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue), 0);
             var somaTudo = resultado.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue), 0);
             console.log(somaTudo)
             console.log(somaEcts)
             final = somaTudo/somaEcts
             console.log(final)
-            document.getElementById("media").style.display = "block"
-            document.getElementById("media").innerHTML = "A tua média é " + final;
         }
-
+        if (isNaN(final)){
+            console.log("letra")
+            document.getElementById("media").style.display = ""
+            document.getElementById("media").innerHTML = "Só podes inserir números positivos, mais nada!"
+        } else {
+            document.getElementById("media").style.display = ""
+            document.getElementById("media").innerHTML = "A tua média é " + final
+        }
     }
 
 
