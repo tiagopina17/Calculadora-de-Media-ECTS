@@ -9,160 +9,163 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
 </head>
-<body class="paralax">
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 <script src="script.js"></script>
-<header class="col-lg-12 col-md-12 col-sm-auto">
-    <nav class="navbar navbar-expand-md sticky-top">
-        <div class="container-fluid">
-            <a class="navbar-brand d-om" href="index.html"><img src="imgs/calculator.png" alt="Logo"></a>
-            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse " id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="index.html"><h4 class="fw-semibold nav-texto mx-2 text-light" >CALCULADORA</h4></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="sobre.html"><h4 class="fw-semibold nav-texto mx-2 text-light">SOBRE</h4></a>
-                    </li>
+    <body class="">
+    <header class="col-lg-12 col-md-12 col-sm-auto">
+        <nav class="navbar navbar-expand-md sticky-top">
+            <div class="container-fluid">
+                <a class="navbar-brand d-om" href="index.html"><img src="imgs/calculator.png" alt="Logo"></a>
+                <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="index.html"><h4 class="fw-semibold nav-texto mx-2 text-light" >CALCULADORA</h4></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="sobre.html"><h4 class="fw-semibold nav-texto mx-2 text-light">SOBRE</h4></a>
+                        </li>
 
-                </ul>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-white mt-4 fw-semibold titulo" >Calculador de Média do Ensino Superior</h1>
             </div>
         </div>
-    </nav>
-</header>
-<div class="container text-center">
-    <div class="row">
-        <div class="col-12">
-            <h1 class="text-white mt-4 fw-semibold titulo" >Calculador de Média do Ensino Superior</h1>
+    </div>
+    <div class="container ">
+        <div class="row">
+            <div class="col-xs-12">
+                <h4 class="text-white mt-4 fw-semibold " >Bem-vindo à Calculadora de Média do Ensino Superior! Aqui, os alunos podem simplificar o processo de calcular as suas médias ponderadas, levando em consideração os ECTS de cada cadeira.</h4>
+            </div>
         </div>
     </div>
-</div>
-<div class="container ">
-    <div class="row">
-        <div class="col-xs-12">
-            <h4 class="text-white mt-4 fw-semibold " >Bem-vindo à Calculadora de Média do Ensino Superior! Aqui, os alunos podem simplificar o processo de calcular as suas médias ponderadas, levando em consideração os ECTS de cada cadeira.</h4>
+    <div class="container ">
+        <div class="row">
+            <div class="col-xs-12">
+                <h4 class="text-white mt-4 fw-semibold " >Queres saber se está a atingir as tuas metas? Utiliza esta ferramenta para acompanhar o teu progresso sem complicações.</h4>
+            </div>
         </div>
     </div>
-</div>
-<div class="container ">
-    <div class="row">
-        <div class="col-xs-12">
-            <h4 class="text-white mt-4 fw-semibold " >Queres saber se está a atingir as tuas metas? Utiliza esta ferramenta para acompanhar o teu progresso sem complicações.</h4>
-        </div>
-    </div>
-</div>
-<div class="container ">
-    <div class="row">
-        <div class="col">
-            <h3  class="text-danger  mt-4 fw-semibold titulo text-center" >Calcula a tua média agora mesmo !</h3>
-        </div>
-    </div>
-</div>
-<div class="container text-white text-center mt-5" id="cabecalho">
-    <table class="table table-success table-bordered border-dark  table-striped" id="tabela">
-        <thead class="table-dark">
-        <tr>
-            <th scope="col">Nome (Opcional)</th>
-            <th scope="col">ECTS</th>
-            <th scope="col">Nota Final</th>
-        </tr>
-        </thead>
-        <tbody id="bodytabela">
 
-        </tbody>
-    </table>
-</div>
-<div class="container text-white text-center mt-4" >
-    <div class="row justify-content-center " >
-        <div class=" ">
-            <h3 id="media" class="text-warning   "></h3>
-        </div>
-    </div>
-</div>
-<div class="container text-white text-center mt-4" id="vazio" >
-    <div class="row justify-content-center " >
-        <div class=" ">
-            <h4  class="text-warning   ">Um dos campos está vazio. Por favor preenche todos os campos!</h4>
-        </div>
-    </div>
-</div>
-<div class="container text-white text-center " id="vazio2" >
-    <div class="row justify-content-center " >
-        <div class=" ">
-            <h4  class="text-warning   ">Se adicionaste cadeiras a mais preenche essas linhas com o número 0.</h4>
-        </div>
-    </div>
-</div>
-<div class="container text-white text-center " id="vazio3" >
-    <div class="row justify-content-center " >
-        <div class=" ">
-            <h4  class="text-success   ">No futuro haverá uma forma de retirar cadeiras :)</h4>
-        </div>
-    </div>
-</div>
-<div class="container  justify-content-center text-white text-center mt-4 " >
-    <div class="  row" id="botoes">
-            <div class=" col-sm-4 col-4">
-                <button class="btn btn-lg btn-block btn-outline-light custom-btn" id="reset">Reset</button>
+    <div class="container ">
+        <div class="row">
+            <div class="col">
+                <h3  class="text-danger  mt-4 fw-semibold titulo text-center" >Calcula a tua média agora mesmo !</h3>
             </div>
-            <div class="col-sm-4 col-4">
-                <button class="btn fw-bold btn-block btn-lg btn-primary custom-btn" id="calcular">Calcular</button>
-            </div>
-            <div class=" col-sm-4 col-4">
-                <button class="btn btn-lg btn-block btn-outline-light custom-btn" id="botao3">Adicionar cadeiras</button>
-            </div>
-    </div>
-</div>
-<div class="container text-white text-center  " >
-    <div class="row justify-content-center " id="adicionar1" >
-        <div class=" ">
-            <h3 class="text-white  fw-semibold" >Queres calcular a média de quantas cadeiras?</h3>
         </div>
     </div>
-</div>
+    <div class="container text-white text-center mt-5" id="cabecalho">
+        <table class="table table-success table-bordered border-dark  table-striped" id="tabela">
+            <thead class="table-dark">
+            <tr>
+                <th scope="col">Nome (Opcional)</th>
+                <th scope="col">ECTS</th>
+                <th scope="col">Nota Final</th>
+            </tr>
+            </thead>
+            <tbody id="bodytabela">
 
-<div class="container text-white text-center " >
-    <div class="row justify-content-center " id="adicionar2" >
-        <div class=" ">
-            <h3 class="text-white -4 fw-semibold" >Queres adicionar mais quantas cadeiras?</h3>
-        </div>
+            </tbody>
+        </table>
     </div>
-</div>
     <div class="container text-white text-center mt-4" >
         <div class="row justify-content-center " >
-            <div class=" col-4  ">
-                <input class="form-control « text-center fw-bold" id = "cadeiras">
+            <div class=" ">
+                <h3 id="media" class="text-warning   "></h3>
+            </div>
+        </div>
+    </div>
+    <div class="container text-white text-center mt-4" id="vazio" >
+        <div class="row justify-content-center " >
+            <div class=" ">
+                <h4  class="text-warning   ">Um dos campos está vazio. Por favor preenche todos os campos!</h4>
+            </div>
+        </div>
+    </div>
+    <div class="container text-white text-center " id="vazio2" >
+        <div class="row justify-content-center " >
+            <div class=" ">
+                <h4  class="text-warning   ">Se adicionaste cadeiras a mais preenche essas linhas com o número 0.</h4>
+            </div>
+        </div>
+    </div>
+    <div class="container text-white text-center " id="vazio3" >
+        <div class="row justify-content-center " >
+            <div class=" ">
+                <h4  class="text-success   ">No futuro haverá uma forma de retirar cadeiras :)</h4>
+            </div>
+        </div>
+    </div>
+    <div class="container  justify-content-center text-white text-center mt-4 " >
+        <div class="  row" id="botoes">
+                <div class=" col-sm-4 col-4">
+                    <button class="btn btn-lg btn-block btn-outline-light custom-btn" id="reset">Reset</button>
+                </div>
+                <div class="col-sm-4 col-4">
+                    <button class="btn fw-bold btn-block btn-lg btn-primary custom-btn" id="calcular">Calcular</button>
+                </div>
+                <div class=" col-sm-4 col-4">
+                    <button class="btn btn-lg btn-block btn-outline-light custom-btn" id="botao3">Adicionar cadeiras</button>
+                </div>
+        </div>
+    </div>
+    <div class="container text-white text-center  " >
+        <div class="row justify-content-center " id="adicionar1" >
+            <div class=" ">
+                <h3 class="text-white  fw-semibold" >Queres calcular a média de quantas cadeiras?</h3>
             </div>
         </div>
     </div>
 
-
-<div class="container text-white text-center mt-5" >
-    <div class="row justify-content-center " >
-        <div class=" ">
-            <button class="btn btn-lg btn-primary" id="botao">Adicionar cadeira(s)</button>
+    <div class="container text-white text-center " >
+        <div class="row justify-content-center " id="adicionar2" >
+            <div class=" ">
+                <h3 class="text-white -4 fw-semibold" >Queres adicionar mais quantas cadeiras?</h3>
+            </div>
         </div>
     </div>
-</div>
-<footer class="container-fluid  pt-2 mt-5 justify-content-center align-content-center text-center">
-    <section class="row justify-content-center ">
-        <p class="col-12 text-light text-decoration-none lead fw-bolder text-center"><a  href="#break_socials" class="text-light text-decoration-none lead fw-semibold text-center"> Termos e Condições</a> | <a  href="#break_socials" class="text-light text-decoration-none lead fw-semibold text-center">Política de Privacidade</a></p>
-    </section>
-    <section class="d-block" id="break_socials">
-        <article class="col-12  ">
-            <a href="#break_socials"><i class="bi bi-instagram m-3 text-light fw-bolder h4 "></i></a>
-            <a href="#break_socials"><i class="bi bi-facebook m-3 text-light fw-bolder h4"></i></a>
-            <a href="#break_socials"><i class="bi bi-twitter m-3 text-light fw-bolder h4 "></i></a>
-        </article>
-    </section>
-</footer>
+        <div class="container text-white text-center mt-4" >
+            <div class="row justify-content-center " >
+                <div class=" col-4  ">
+                    <input class="form-control « text-center fw-bold" id = "cadeiras">
+                </div>
+            </div>
+        </div>
 
 
+    <div class="container text-white text-center mt-5" >
+        <div class="row justify-content-center " >
+            <div class=" ">
+                <button class="btn btn-lg btn-primary" id="botao">Adicionar cadeira(s)</button>
+            </div>
+        </div>
+    </div>
+    <footer class="container-fluid pb-2  pt-2 mt-5 justify-content-center align-content-center text-center">
+        <section class="row justify-content-center ">
+            <p class="col-12 fs-4 text-warning text-decoration-none lead fw-bolder text-center" id="creditos">MADE BY TIAGO PINA</p>
+        </section>
+        <section class="row justify-content-center ">
+            <p class="col-12 text-light text-decoration-none lead fw-bolder text-center"><a  href="#break_socials" class="text-light text-decoration-none lead fw-semibold text-center"> Termos e Condições</a> | <a  href="#break_socials" class="text-light text-decoration-none lead fw-semibold text-center">Política de Privacidade</a></p>
+        </section>
 
+        <section class="d-block" id="break_socials">
+            <article class="col-12  ">
+                <a href="#break_socials"><i class="bi bi-instagram m-3 text-light fw-bolder h4 "></i></a>
+                <a href="#break_socials"><i class="bi bi-facebook m-3 text-light fw-bolder h4"></i></a>
+                <a href="#break_socials"><i class="bi bi-twitter m-3 text-light fw-bolder h4 "></i></a>
+            </article>
+        </section>
+    </footer>
 </body>
 </html>

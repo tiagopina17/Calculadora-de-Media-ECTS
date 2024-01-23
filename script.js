@@ -13,16 +13,13 @@ window.onload = function () {
         document.getElementById("botoes").style.display = "none"
         document.getElementById("adicionar2").style.display = "none"
         document.getElementById("media").style.display = "none"
-        document.getElementById("vazio").style.display = "none"
-        document.getElementById("vazio2").style.display = "none"
-        document.getElementById("vazio3").style.display = "none"
-        document.getElementById("adicionar2").style.display = "none"
+
         document.getElementById("media").style.display = "none"
         document.getElementById("adicionar1").style.display = "flex"
         document.getElementById("cadeiras").style.display = "flex"
         document.getElementById("botao").style.display = ""
         document.getElementById("bodytabela").innerHTML = ""
-        resetvalores()
+        counter = 0
     }
 
 
@@ -73,6 +70,26 @@ window.onload = function () {
         }
         //TODO FAZER O MESMO COM AS NOTAS NA LINHA ABAIXO
         if (ectsArray.includes("")){
+            console.log("vazios")
+            document.getElementById("media").style.display = "none"
+            document.getElementById("vazio").style.display = "flex"
+            document.getElementById("vazio2").style.display = "flex"
+            document.getElementById("vazio3").style.display = "flex"
+        } else {
+            console.log("cheios")
+            document.getElementById("vazio").style.display = "none"
+            document.getElementById("vazio2").style.display = "none"
+            document.getElementById("vazio3").style.display = "none"
+            var somaEcts = ectsArray.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue), 0);
+            var somaTudo = resultado.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue), 0);
+            console.log(somaTudo)
+            console.log(somaEcts)
+            final = somaTudo/somaEcts
+            console.log(final)
+            document.getElementById("media").style.display = "block"
+            document.getElementById("media").innerHTML = "A tua média é " + final;
+        }
+        if (notasArray.includes("")){
             console.log("vazios")
             document.getElementById("media").style.display = "none"
             document.getElementById("vazio").style.display = "flex"

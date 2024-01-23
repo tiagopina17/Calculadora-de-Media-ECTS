@@ -1,6 +1,6 @@
-body, html{
+body{
     background-color: #121212 !important;
-    overflow-x:hidden !important;
+    overflow-x: hidden !important;
     max-width: 100% !important;
 
 }
@@ -25,9 +25,9 @@ nav{
 
 footer{
     background-color: #7d4897;
-    padding-bottom: 2vh;
     margin-left: 0;
     margin-right: 0;
+
     --bs-gutter-x: 0 !important;
 
 }
@@ -78,3 +78,4 @@ img{
 .disabled{
     opacity: 70%;
 }
+
