@@ -8,7 +8,7 @@ window.onload = function () {
     var somaEcts;
     var final;
 
-    function reset(){
+    function reset() {
         document.getElementById("cabecalho").style.display = "none"
         document.getElementById("botoes").style.display = "none"
         document.getElementById("adicionar2").style.display = "none"
@@ -21,8 +21,6 @@ window.onload = function () {
         document.getElementById("bodytabela").innerHTML = ""
         counter = 0
     }
-
-
 
 
     document.getElementById("cabecalho").style.display = "none"
@@ -40,69 +38,67 @@ window.onload = function () {
         document.getElementById("adicionar1").style.display = "none"
         document.getElementById("cadeiras").style.display = "none"
         document.getElementById("botao").style.display = "none"
-        for (var x = 0; x < document.getElementById("cadeiras").value; x = x + 1) {
-            counter = counter + 1
-            document.getElementById("botoes").style.display = "flex"
+        if (document.getElementById("cadeiras").value == "") {
+            console.log("vazio")
+        } else {
+            for (var x = 0; x < document.getElementById("cadeiras").value; x = x + 1) {
+                counter = counter + 1
+                document.getElementById("botoes").style.display = "flex"
 
-            document.getElementById("bodytabela").innerHTML = document.getElementById("bodytabela").innerHTML + "        <tr>\n" +
-                "            <td class=\"col-4\"><div contenteditable></div></td>\n" +
-                "            <td class=\"col-4\" id=\"ects" + counter + "\"><div contenteditable></div></td>\n" +
-                "            <td class=\"col-4\" id=\"nota" + counter + "\"><div contenteditable></div></td>\n" +
-                "        </tr>"
+                document.getElementById("bodytabela").innerHTML = document.getElementById("bodytabela").innerHTML + "        <tr>\n" +
+                    "            <td class=\"col-4\"><div contenteditable></div></td>\n" +
+                    "            <td class=\"col-4\" id=\"ects" + counter + "\"><div contenteditable></div></td>\n" +
+                    "            <td class=\"col-4\" id=\"nota" + counter + "\"><div contenteditable></div></td>\n" +
+                    "        </tr>"
+            }
         }
     }
 
-    document.getElementById("reset").onclick = function (){
+    document.getElementById("reset").onclick = function () {
         reset()
     }
 
     document.getElementById("calcular").onclick = function () {
-        ectsArray =[]
-        notasArray =[]
+        ectsArray = []
+        notasArray = []
         resultado = []
         for (var i = 1; i <= counter; i++) {
             var ectsValores = table.rows[i].cells[1].innerText;
             ectsArray.push(ectsValores);
             var notasValores = table.rows[i].cells[2].innerText;
             notasArray.push(notasValores);
-            resultado.push(ectsArray[i-1] * notasArray[i-1]);
+            resultado.push(ectsArray[i - 1] * notasArray[i - 1]);
+            var somaEcts = ectsArray.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue), 0);
+            var somaTudo = resultado.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue), 0);
+            final = somaTudo / somaEcts
+
         }
-        if (ectsArray.includes("")){
+        if (ectsArray.includes("")) {
             console.log("vazios")
             document.getElementById("media").style.display = "none"
             document.getElementById("vazio").style.display = "flex"
             document.getElementById("vazio2").style.display = "flex"
-        } else {
-            document.getElementById("vazio").style.display = "none"
-            document.getElementById("vazio2").style.display = "none"
-            var somaEcts = ectsArray.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue), 0);
-            var somaTudo = resultado.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue), 0);
-            console.log(somaTudo)
-            console.log(somaEcts)
-            final = somaTudo/somaEcts
-            console.log(final)
-        }
-        if (notasArray.includes("")){
+        } else if (notasArray.includes("")) {
             console.log("vazios")
             document.getElementById("media").style.display = "none"
             document.getElementById("vazio").style.display = "flex"
             document.getElementById("vazio2").style.display = "flex"
-        } else {
-            console.log(final)
-            document.getElementById("vazio").style.display = "none"
-            document.getElementById("vazio2").style.display = "none"
-            var somaEcts = ectsArray.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue), 0);
-            var somaTudo = resultado.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue), 0);
-            console.log(somaTudo)
-            console.log(somaEcts)
-            final = somaTudo/somaEcts
-            console.log(final)
-        }
-        if (isNaN(final)){
+        } else if (isNaN(final)) {
             console.log("letra")
+            console.log(ectsArray)
+            console.log(notasArray)
+            console.log(resultado)
+
+
             document.getElementById("media").style.display = ""
             document.getElementById("media").innerHTML = "Só podes inserir números positivos, mais nada!"
         } else {
+            document.getElementById("vazio").style.display = "none"
+            document.getElementById("vazio2").style.display = "none"
+
+            console.log(somaTudo)
+            console.log(somaEcts)
+            console.log(final)
             document.getElementById("media").style.display = ""
             document.getElementById("media").innerHTML = "A tua média é " + final
         }
