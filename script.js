@@ -1,5 +1,5 @@
 window.onload = function () {
-    //TODO: ADICIONAR EXCEÇÃO PARA NEGATIVOS OU VAZIOS
+    //TODO:TRATAR DO PRIMEIRO INPUT E ADICIONAR CADEIRAS COM IPLEMENTAÇÃO DE LOCAL STORAGE
     var ectsArray = [];
     var notasArray = [];
     var resultado = [];
@@ -13,7 +13,6 @@ window.onload = function () {
         document.getElementById("botoes").style.display = "none"
         document.getElementById("adicionar2").style.display = "none"
         document.getElementById("media").style.display = "none"
-
         document.getElementById("media").style.display = "none"
         document.getElementById("adicionar1").style.display = "flex"
         document.getElementById("cadeiras").style.display = "flex"
@@ -30,17 +29,28 @@ window.onload = function () {
     document.getElementById("vazio2").style.display = "none"
     document.getElementById("adicionar2").style.display = "none"
     document.getElementById("media").style.display = "none"
+    document.getElementById("cadeirasvazio").style.display = "none"
+    document.getElementById("cadeiraserro").style.display = "none"
+
+
 
     var counter = 0
 
     document.getElementById("botao").onclick = function () {
-        document.getElementById("cabecalho").style.display = "block"
-        document.getElementById("adicionar1").style.display = "none"
-        document.getElementById("cadeiras").style.display = "none"
-        document.getElementById("botao").style.display = "none"
-        if (document.getElementById("cadeiras").value == "") {
-            console.log("vazio")
-        } else {
+        if (document.getElementById("cadeiras").value === "") {
+            document.getElementById("cadeirasvazio").style.display = "flex"
+        } else if ((parseInt(document.getElementById("cadeiras").value) != document.getElementById("cadeiras").value) || (document.getElementById("cadeiras").value < 0)){
+            console.log(parseInt(document.getElementById("cadeiras").value))
+            console.log(document.getElementById("cadeiras").value)
+            document.getElementById("cadeiraserro").style.display = "flex"
+            document.getElementById("cadeirasvazio").style.display = "none"
+        } else  {
+            document.getElementById("cabecalho").style.display = "block"
+            document.getElementById("adicionar1").style.display = "none"
+            document.getElementById("cadeiras").style.display = "none"
+            document.getElementById("botao").style.display = "none"
+            document.getElementById("cadeirasvazio").style.display = "none"
+            document.getElementById("cadeiraserro").style.display = "none"
             for (var x = 0; x < document.getElementById("cadeiras").value; x = x + 1) {
                 counter = counter + 1
                 document.getElementById("botoes").style.display = "flex"
@@ -83,26 +93,26 @@ window.onload = function () {
             document.getElementById("media").style.display = "none"
             document.getElementById("vazio").style.display = "flex"
             document.getElementById("vazio2").style.display = "flex"
-        } else if (isNaN(final)) {
+        } else if ((parseInt(final) != final) || (ectsArray.some(number => number < 0)) || (notasArray.some(number => number < 0)))  {
             console.log("letra")
             console.log(ectsArray)
             console.log(notasArray)
             console.log(resultado)
-
-
+            document.getElementById("vazio").style.display = "none"
+            document.getElementById("vazio2").style.display = "none"
             document.getElementById("media").style.display = ""
-            document.getElementById("media").innerHTML = "Só podes inserir números positivos, mais nada!"
+            document.getElementById("media").innerHTML = "Só podes inserir números positivos inteiros!"
+
         } else {
             document.getElementById("vazio").style.display = "none"
             document.getElementById("vazio2").style.display = "none"
-
             console.log(somaTudo)
             console.log(somaEcts)
             console.log(final)
             document.getElementById("media").style.display = ""
             document.getElementById("media").innerHTML = "A tua média é " + final
+            }
         }
-    }
 
 
 
