@@ -93,11 +93,10 @@ window.onload = function () {
             document.getElementById("media").style.display = "none"
             document.getElementById("vazio").style.display = "flex"
             document.getElementById("vazio2").style.display = "flex"
-        } else if ((parseInt(final) != final) || (ectsArray.some(number => number < 0)) || (notasArray.some(number => number < 0)))  {
+        } else if ((ectsArray.some(number => number < 0)) || (notasArray.some(number => number < 0)))  {
             console.log("letra")
-            console.log(ectsArray)
-            console.log(notasArray)
-            console.log(resultado)
+            console.log(parseInt(final))
+            console.log(final)
             document.getElementById("vazio").style.display = "none"
             document.getElementById("vazio2").style.display = "none"
             document.getElementById("media").style.display = ""
