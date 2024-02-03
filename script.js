@@ -2,6 +2,8 @@ window.onload = function () {
     //TODO:TRATAR DO PRIMEIRO INPUT E ADICIONAR CADEIRAS COM IPLEMENTAÇÃO DE LOCAL STORAGE
     var ectsArray = [];
     var notasArray = [];
+    var ectsFinal = [];
+    var notasFinal = [];
     var resultado = [];
     var table = document.getElementById('tabela');
     var somaTudo;
@@ -77,11 +79,12 @@ window.onload = function () {
             ectsArray.push(ectsValores);
             var notasValores = table.rows[i].cells[2].innerText;
             notasArray.push(notasValores);
-            resultado.push(ectsArray[i - 1] * notasArray[i - 1]);
-            var somaEcts = ectsArray.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue), 0);
+            ectsFinal = ectsArray.map(item => item.replace(/,/g, '.'));
+            notasFinal = notasArray.map(item => item.replace(/,/g, '.'));
+            resultado.push(ectsFinal[i - 1] * notasFinal[i - 1]);
+            var somaEcts = ectsFinal.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue), 0);
             var somaTudo = resultado.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue), 0);
             final = somaTudo / somaEcts
-
         }
         if (ectsArray.includes("")) {
             console.log("vazios")
@@ -105,6 +108,8 @@ window.onload = function () {
         } else {
             document.getElementById("vazio").style.display = "none"
             document.getElementById("vazio2").style.display = "none"
+            console.log(ectsArray)
+            console.log(ectsFinal)
             console.log(somaTudo)
             console.log(somaEcts)
             console.log(final)
