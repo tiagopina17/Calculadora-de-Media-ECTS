@@ -1,14 +1,72 @@
 window.onload = function () {
-    //TODO:TRATAR DO PRIMEIRO INPUT E ADICIONAR CADEIRAS COM IPLEMENTAÇÃO DE LOCAL STORAGE
+    //TODO:CONTAS GOOGLE E UM BREAK PARA PUXAR A PAGINA PARA O ADICIONAR CADEIRAS QUANDO ELE ACONTECE
     var ectsArray = [];
     var notasArray = [];
     var ectsFinal = [];
     var notasFinal = [];
     var resultado = [];
     var table = document.getElementById('tabela');
-    var somaTudo;
-    var somaEcts;
+    let savedData = []; 
+    var counter = 0
+
     var final;
+
+    function saveTableData() {
+        let tableData = [];
+        let rows = document.querySelectorAll("#bodytabela tr");
+    
+        rows.forEach(row => {
+            let columns = row.querySelectorAll("td");
+            let rowData = {
+                nome: columns[0].innerText,
+                ects: columns[1].innerText,
+                nota: columns[2].innerText
+            };
+            tableData.push(rowData);
+        });
+
+        localStorage.setItem("tableData", JSON.stringify(tableData));
+    
+        return tableData;
+    }
+
+    function repopulateTable() {
+        console.log("repopulateTable");
+    
+        let tbody = document.getElementById("bodytabela");
+        tbody.innerHTML = "";  
+    
+        let savedData = JSON.parse(localStorage.getItem("tableData")) || [];
+        let counter = parseInt(localStorage.getItem("counter")) || 0;
+    
+        for (let i = 0; i < counter; i++) {
+            let row = document.createElement("tr");
+    
+            // Dynamically create names for ects and nota columns
+            let nomeCell = document.createElement("td");
+            nomeCell.textContent = savedData[i]?.nome || ""; 
+            nomeCell.contentEditable = "true";  
+    
+            let ectsCell = document.createElement("td");
+            ectsCell.textContent = savedData[i]?.ects || "";
+            ectsCell.contentEditable = "true";
+            ectsCell.id = `ects${i + 1}`;  // Set ID for each ECTS field (ects1, ects2, etc.)
+    
+            let notaCell = document.createElement("td");
+            notaCell.textContent = savedData[i]?.nota || "";
+            notaCell.contentEditable = "true";
+            notaCell.id = `nota${i + 1}`;  // Set ID for each Nota field (nota1, nota2, etc.)
+    
+            row.appendChild(nomeCell);
+            row.appendChild(ectsCell);
+            row.appendChild(notaCell);
+            tbody.appendChild(row);
+        }
+    }
+    
+    
+    
+    
 
     function reset() {
         document.getElementById("cabecalho").style.display = "none"
@@ -39,7 +97,24 @@ window.onload = function () {
 
 
 
-    var counter = 0
+   
+
+    if (localStorage.getItem("dataCheck") === "true") {
+        var myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+        myModal.show();
+    }
+
+    document.getElementById("simModal").onclick = function () {
+        document.getElementById("botoes").style.display = "flex"
+        document.getElementById("preenche").style.display = ""
+        document.getElementById("cabecalho").style.display = "block"
+        document.getElementById("adicionar1").style.display = "none"
+        document.getElementById("cadeiras").style.display = "none"
+        document.getElementById("botao").style.display = "none"
+        document.getElementById("cadeirasvazio").style.display = "none"
+        document.getElementById("cadeiraserro").style.display = "none"
+        repopulateTable();
+    }
 
     document.getElementById("botao").onclick = function () {
         document.getElementById("preenche").style.display = ""
@@ -78,6 +153,11 @@ window.onload = function () {
         ectsArray = []
         notasArray = []
         resultado = []
+        console.log(counter)
+        if (counter === 0) {
+            counter = parseInt(localStorage.getItem("counter"))
+        }
+        console.log(counter)
         for (var i = 1; i <= counter; i++) {
             var ectsValores = table.rows[i].cells[1].innerText;
             ectsArray.push(ectsValores);
@@ -112,6 +192,7 @@ window.onload = function () {
         } else {
             document.getElementById("vazio").style.display = "none"
             document.getElementById("vazio2").style.display = "none"
+            console.log(counter)
             console.log(ectsArray)
             console.log(ectsFinal)
             console.log(somaTudo)
@@ -119,6 +200,9 @@ window.onload = function () {
             console.log(final)
             document.getElementById("media").style.display = ""
             document.getElementById("media").innerHTML = "A tua média é " + final
+            localStorage.setItem("dataCheck", true)
+            localStorage.setItem("counter", counter)
+            saveTableData()
             }
         }
 
@@ -152,6 +236,6 @@ window.onload = function () {
 
 
 
-
+    
 }
 

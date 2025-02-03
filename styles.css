@@ -79,3 +79,11 @@ img{
     opacity: 70%;
 }
 
+#tabela th, #tabela td {
+    width: 33%; /* Adjust as needed */
+    text-align: center; /* Keeps text centered */
+}
+
+.modal-content,  .modal-body, .modal-footer {
+    border: none !important;
+}
