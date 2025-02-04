@@ -1,5 +1,5 @@
 window.onload = function () {
-    //TODO:CONTAS GOOGLE E UM BREAK PARA PUXAR A PAGINA PARA O ADICIONAR CADEIRAS QUANDO ELE ACONTECE
+    //TODO:CONTAS GOOGLE E UM BREAK PARA PUXAR A PAGINA PARA O ADICIONAR CADEIRAS QUANDO ELE ACONTECE e MELHORAR ERROR HANDLING
     var ectsArray = [];
     var notasArray = [];
     var ectsFinal = [];
@@ -8,7 +8,7 @@ window.onload = function () {
     var table = document.getElementById('tabela');
     let savedData = []; 
     var counter = 0
-
+    var removeadd 
     var final;
 
     function saveTableData() {
@@ -24,7 +24,7 @@ window.onload = function () {
             };
             tableData.push(rowData);
         });
-
+        localStorage.setItem("counter", counter)
         localStorage.setItem("tableData", JSON.stringify(tableData));
     
         return tableData;
@@ -32,16 +32,15 @@ window.onload = function () {
 
     function repopulateTable() {
         console.log("repopulateTable");
-    
         let tbody = document.getElementById("bodytabela");
         tbody.innerHTML = "";  
     
         let savedData = JSON.parse(localStorage.getItem("tableData")) || [];
         let counter = parseInt(localStorage.getItem("counter")) || 0;
-    
+        console.log(counter)
         for (let i = 0; i < counter; i++) {
             let row = document.createElement("tr");
-    
+            console.log(counter)
             // Dynamically create names for ects and nota columns
             let nomeCell = document.createElement("td");
             nomeCell.textContent = savedData[i]?.nome || ""; 
@@ -62,34 +61,33 @@ window.onload = function () {
             row.appendChild(notaCell);
             tbody.appendChild(row);
         }
+
     }
     
     
     
     
 
-    function reset() {
-        document.getElementById("cabecalho").style.display = "none"
-        document.getElementById("botoes").style.display = "none"
-        document.getElementById("adicionar2texto").style.display = "none"
-        document.getElementById("media").style.display = "none"
-        document.getElementById("media").style.display = "none"
-        document.getElementById("adicionar1").style.display = "flex"
-        document.getElementById("cadeiras").style.display = "flex"
-        document.getElementById("botao").style.display = ""
-        document.getElementById("bodytabela").innerHTML = ""
-        counter = 0
-    }
+    //function reset() {
+       // document.getElementById("cabecalho").style.display = "none"
+       // document.getElementById("botoes").style.display = "none"
+       // document.getElementById("adicionar2texto").style.display = "none"
+       // document.getElementById("media").style.display = "none"
+       // document.getElementById("media").style.display = "none"
+       // document.getElementById("adicionar1").style.display = "flex"
+       // document.getElementById("cadeiras").style.display = "flex"
+       // document.getElementById("botao").style.display = ""
+       // document.getElementById("bodytabela").innerHTML = ""
+       //  counter = 0
+   // }
 
 
     document.getElementById("cabecalho").style.display = "none"
     document.getElementById("botoes").style.display = "none"
     document.getElementById("adicionar2texto").style.display = "none"
     document.getElementById("vazio").style.display = "none"
-    document.getElementById("vazio2").style.display = "none"
     document.getElementById("adicionar2botao").style.display = "none"
     document.getElementById("media").style.display = "none"
-    document.getElementById("cadeirasvazio").style.display = "none"
     document.getElementById("cadeiraserro").style.display = "none"
     document.getElementById("adicionarinput").style.display = "none"
     document.getElementById("preenche").style.display = "none"
@@ -111,7 +109,6 @@ window.onload = function () {
         document.getElementById("adicionar1").style.display = "none"
         document.getElementById("cadeiras").style.display = "none"
         document.getElementById("botao").style.display = "none"
-        document.getElementById("cadeirasvazio").style.display = "none"
         document.getElementById("cadeiraserro").style.display = "none"
         repopulateTable();
     }
@@ -119,7 +116,9 @@ window.onload = function () {
     document.getElementById("botao").onclick = function () {
         document.getElementById("preenche").style.display = ""
         if (document.getElementById("cadeiras").value === "") {
-            document.getElementById("cadeirasvazio").style.display = "flex"
+            document.getElementById("preenche").style.display = "none"
+            document.getElementById("vazio").innerHTML = "<h4 class=\"text-warning text-center\">Insere o número cadeiras no campo acima</h4>"
+            document.getElementById("vazio").style.display = ""
         } else if ((parseInt(document.getElementById("cadeiras").value) != document.getElementById("cadeiras").value) || (document.getElementById("cadeiras").value < 0)){
             console.log(parseInt(document.getElementById("cadeiras").value))
             console.log(document.getElementById("cadeiras").value)
@@ -130,7 +129,6 @@ window.onload = function () {
             document.getElementById("adicionar1").style.display = "none"
             document.getElementById("cadeiras").style.display = "none"
             document.getElementById("botao").style.display = "none"
-            document.getElementById("cadeirasvazio").style.display = "none"
             document.getElementById("cadeiraserro").style.display = "none"
             for (var x = 0; x < document.getElementById("cadeiras").value; x = x + 1) {
                 counter = counter + 1
@@ -145,9 +143,7 @@ window.onload = function () {
         }
     }
 
-    document.getElementById("reset").onclick = function () {
-        reset()
-    }
+   
 
     document.getElementById("calcular").onclick = function () {
         ectsArray = []
@@ -170,28 +166,19 @@ window.onload = function () {
             var somaTudo = resultado.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue), 0);
             final = somaTudo / somaEcts
         }
-        if (ectsArray.includes("")) {
+        if (ectsArray.includes("") || notasArray.includes("")) {
             console.log("vazios")
             document.getElementById("media").style.display = "none"
-            document.getElementById("vazio").style.display = "flex"
-            document.getElementById("vazio2").style.display = "flex"
-        } else if (notasArray.includes("")) {
-            console.log("vazios")
-            document.getElementById("media").style.display = "none"
-            document.getElementById("vazio").style.display = "flex"
-            document.getElementById("vazio2").style.display = "flex"
-        } else if ((ectsArray.some(number => number < 0)) || (notasArray.some(number => number < 0)))  {
-            console.log("letra")
-            console.log(parseInt(final))
-            console.log(final)
-            document.getElementById("vazio").style.display = "none"
-            document.getElementById("vazio2").style.display = "none"
-            document.getElementById("media").style.display = ""
-            document.getElementById("media").innerHTML = "Só podes inserir números positivos inteiros!"
-
+            document.getElementById("vazio").style.display = ""
+        } else if (ectsArray.some(number => number < 0 || number.toString().includes(".") || number.toString().includes(",")) || notasArray.some(number => number < 0 || number.toString().includes(".") || number.toString().includes(","))) {
+            console.log("letra");
+            console.log(parseInt(final));
+            console.log(final);
+            document.getElementById("vazio").style.display = "none";
+            document.getElementById("media").style.display = "";
+            document.getElementById("media").innerHTML = "Só podes inserir números positivos inteiros! Suporte para numeros decimais virá brevemente!";
         } else {
             document.getElementById("vazio").style.display = "none"
-            document.getElementById("vazio2").style.display = "none"
             console.log(counter)
             console.log(ectsArray)
             console.log(ectsFinal)
@@ -207,31 +194,75 @@ window.onload = function () {
         }
 
     document.getElementById("adicionar").onclick = function () {
+        removeadd = "add"
+        if (counter === 0) {
+            counter = parseInt(localStorage.getItem("counter"))
+        }
         console.log(counter)
+        document.getElementById("adicionar2botao").innerHTML = "<button class=\"btn btn-lg btn-success\" id=\"adicionar2botao\">Adicionar</button>"
+        document.getElementById("adicionar2texto").innerHTML = '<h3 class="text-white fw-semibold mt-5">Quantas cadeiras queres adicionar?</h3>';
         document.getElementById("adicionarinput").style.display = "flex"
         document.getElementById("adicionar2botao").style.display = ""
         document.getElementById("adicionar2texto").style.display = "flex"
         console.log(document.getElementById("adicionarinput").value)
-        
+        window.location.href = "#adicionar2botao";
+
+    }
+
+    document.getElementById("remover").onclick = function () {
+        removeadd = "remove"
+        if (counter === 0) {
+            counter = parseInt(localStorage.getItem("counter"))
+        }
+        console.log(counter)
+        document.getElementById("adicionarinput").style.display = "flex"
+        document.getElementById("adicionar2botao").innerHTML = "<button class=\"btn btn-lg btn-danger\" id=\"adicionar2botao\">Remover</button>"
+        document.getElementById("adicionar2botao").style.display = ""
+        document.getElementById("adicionar2texto").innerHTML = '<h3 class="text-white fw-semibold mt-5">Quantas cadeiras queres remover?</h3>';
+        document.getElementById("adicionar2texto").style.display = "flex";
+        console.log(document.getElementById("adicionarinput").value)
+        window.location.href = "#adicionar2botao";
     }
 
     document.getElementById("adicionar2botao").onclick = function () {
-        for (var x = 0; x < document.getElementById("adicionarinput").value; x = x + 1) {
-        
-            console.log("entrou")
-            counter = counter + 1
-            document.getElementById("botoes").style.display = "flex"
+        if (removeadd === "add") { 
+            for (var x = 0; x < parseInt(document.getElementById("adicionarinput").value); x++) {
+                console.log(x + "YEEE")
+                console.log(document.getElementById("adicionarinput").value + "hhh")
+                counter = counter + 1
+                document.getElementById("botoes").style.display = "flex"
+    
+                document.getElementById("bodytabela").innerHTML = document.getElementById("bodytabela").innerHTML + "        <tr>\n" +
+                    "            <td class=\"col-4\"><div contenteditable></div></td>\n" +
+                    "            <td class=\"col-4\" id=\"ects" + counter + "\"><div contenteditable></div></td>\n" +
+                    "            <td class=\"col-4\" id=\"nota" + counter + "\"><div contenteditable></div></td>\n" +
+                    "        </tr>"
+                console.log(counter)
+                document.getElementById("adicionarinput").style.display = "none"
+                document.getElementById("adicionar2botao").style.display = "none"
+                document.getElementById("adicionar2texto").style.display = "none"
+                
+            }
+            document.getElementById("adicionarinput").value = ""
 
-            document.getElementById("bodytabela").innerHTML = document.getElementById("bodytabela").innerHTML + "        <tr>\n" +
-                "            <td class=\"col-4\"><div contenteditable></div></td>\n" +
-                "            <td class=\"col-4\" id=\"ects" + counter + "\"><div contenteditable></div></td>\n" +
-                "            <td class=\"col-4\" id=\"nota" + counter + "\"><div contenteditable></div></td>\n" +
-                "        </tr>"
-            console.log(counter)
-            document.getElementById("adicionarinput").style.display = "none"
-            document.getElementById("adicionar2botao").style.display = "none"
-            document.getElementById("adicionar2texto").style.display = "none"
+        } else {
+            for (var x = 0; x < document.getElementById("adicionarinput").value; x = x + 1) {
+        
+                console.log("entrou2")
+                counter = counter - 1
+                console.log(counter)
+                saveTableData()
+
+                document.getElementById("botoes").style.display = "flex"
+                repopulateTable()
+                console.log(counter)
+                document.getElementById("adicionarinput").style.display = "none"
+                document.getElementById("adicionar2botao").style.display = "none"
+                document.getElementById("adicionar2texto").style.display = "none"
+            }
+            document.getElementById("adicionarinput").value = ""
         }
+    
     }
 
 
