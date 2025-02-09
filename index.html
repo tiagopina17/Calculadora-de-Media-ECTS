@@ -126,13 +126,21 @@
                 </div>
             </div>
         </div>
-        <div class="container text-white text-center mt-4" >
-            <div class="row justify-content-center">
-                <div  id="vazio" class="text-center">
-                    <h4 class="text-warning">Um dos campos está vazio. Por favor preenche todos os campos!</h4>
+        <div class="modal fade " id="modalErros" tabindex="-1" aria-labelledby="modalErrosLabel" aria-hidden="true">
+            <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content bg-dark">
+                <div class="modal-header bg-dark">
+                <h1 class="modal-title fs-5 text-light " id="modalErrosLabel">⚠️</h1>
+                </div>
+                <div class="modal-body text-light fs-5" id="modalErrosTexto">
+                Insere o número de cadeiras para que queres calcular a média. Podes sempre alterar depois!
+                </div>
+                <div class="modal-footer bg-dark d-flex justify-content-center w-100">
+                    <button type="button" class="btn btn-primary ms-3 btn-lg " data-bs-dismiss="modal" id="simModal">OK!</button>
                 </div>
             </div>
-        </div>
+            </div>
+        </div> 
         <div class="container justify-content-center text-white text-center mt-4">
             <div class="row" id="botoes">
                     <div class="col-sm-4 col-4">
@@ -164,13 +172,6 @@
             <div class="row justify-content-center ">
                 <div>
                     <button class="btn btn-lg" id="adicionar2botao">Adicionar</button>
-                </div>
-            </div>
-        </div>
-        <div class="container text-white text-center mt-5" id="cadeiraserro">
-            <div class="row justify-content-center ">
-                <div>
-                    <h4 class="text-warning">Só podes inserir números positivos inteiros!</h4>
                 </div>
             </div>
         </div>

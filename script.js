@@ -1,5 +1,5 @@
 window.onload = function () {
-    //TODO:CONTAS GOOGLE E UM BREAK PARA PUXAR A PAGINA PARA O ADICIONAR CADEIRAS QUANDO ELE ACONTECE e MELHORAR ERROR HANDLING
+    //TODO:CONTAS E RESOLVER NAN E ERROS MAIS BONITOS 
     var ectsArray = [];
     var notasArray = [];
     var ectsFinal = [];
@@ -41,7 +41,7 @@ window.onload = function () {
         for (let i = 0; i < counter; i++) {
             let row = document.createElement("tr");
             console.log(counter)
-            // Dynamically create names for ects and nota columns
+            
             let nomeCell = document.createElement("td");
             nomeCell.textContent = savedData[i]?.nome || ""; 
             nomeCell.contentEditable = "true";  
@@ -85,10 +85,8 @@ window.onload = function () {
     document.getElementById("cabecalho").style.display = "none"
     document.getElementById("botoes").style.display = "none"
     document.getElementById("adicionar2texto").style.display = "none"
-    document.getElementById("vazio").style.display = "none"
     document.getElementById("adicionar2botao").style.display = "none"
     document.getElementById("media").style.display = "none"
-    document.getElementById("cadeiraserro").style.display = "none"
     document.getElementById("adicionarinput").style.display = "none"
     document.getElementById("preenche").style.display = "none"
 
@@ -109,7 +107,6 @@ window.onload = function () {
         document.getElementById("adicionar1").style.display = "none"
         document.getElementById("cadeiras").style.display = "none"
         document.getElementById("botao").style.display = "none"
-        document.getElementById("cadeiraserro").style.display = "none"
         repopulateTable();
     }
 
@@ -117,19 +114,20 @@ window.onload = function () {
         document.getElementById("preenche").style.display = ""
         if (document.getElementById("cadeiras").value === "") {
             document.getElementById("preenche").style.display = "none"
-            document.getElementById("vazio").innerHTML = "<h4 class=\"text-warning text-center\">Insere o número cadeiras no campo acima</h4>"
-            document.getElementById("vazio").style.display = ""
+            var myModal2 = new bootstrap.Modal(document.getElementById('modalErros'));
+            myModal2.show();
         } else if ((parseInt(document.getElementById("cadeiras").value) != document.getElementById("cadeiras").value) || (document.getElementById("cadeiras").value < 0)){
+            document.getElementById("preenche").style.display = "none"
             console.log(parseInt(document.getElementById("cadeiras").value))
             console.log(document.getElementById("cadeiras").value)
-            document.getElementById("cadeiraserro").style.display = "flex"
-            document.getElementById("cadeirasvazio").style.display = "none"
+            document.getElementById("modalErrosTexto").innerHTML = "Só podes inserir números positivos inteiros!"   
+            var myModal2 = new bootstrap.Modal(document.getElementById('modalErros'));
+            myModal2.show();
         } else  {
             document.getElementById("cabecalho").style.display = "block"
             document.getElementById("adicionar1").style.display = "none"
             document.getElementById("cadeiras").style.display = "none"
             document.getElementById("botao").style.display = "none"
-            document.getElementById("cadeiraserro").style.display = "none"
             for (var x = 0; x < document.getElementById("cadeiras").value; x = x + 1) {
                 counter = counter + 1
                 document.getElementById("botoes").style.display = "flex"
@@ -167,18 +165,14 @@ window.onload = function () {
             final = somaTudo / somaEcts
         }
         if (ectsArray.includes("") || notasArray.includes("")) {
-            console.log("vazios")
-            document.getElementById("media").style.display = "none"
-            document.getElementById("vazio").style.display = ""
+            document.getElementById("modalErrosTexto").innerHTML = "Um dos campos está vazio. Por favor preenche todos os campos!"   
+            var myModal2 = new bootstrap.Modal(document.getElementById('modalErros'));
+            myModal2.show();
         } else if (ectsArray.some(number => number < 0 || number.toString().includes(".") || number.toString().includes(",")) || notasArray.some(number => number < 0 || number.toString().includes(".") || number.toString().includes(","))) {
-            console.log("letra");
-            console.log(parseInt(final));
-            console.log(final);
-            document.getElementById("vazio").style.display = "none";
-            document.getElementById("media").style.display = "";
-            document.getElementById("media").innerHTML = "Só podes inserir números positivos inteiros! Suporte para numeros decimais virá brevemente!";
+            document.getElementById("modalErrosTexto").innerHTML = "Só podes inserir números positivos inteiros! Suporte para números decimais brevemente!"    
+            var myModal2 = new bootstrap.Modal(document.getElementById('modalErros'));
+            myModal2.show();
         } else {
-            document.getElementById("vazio").style.display = "none"
             console.log(counter)
             console.log(ectsArray)
             console.log(ectsFinal)
