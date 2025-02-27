@@ -21,7 +21,3 @@ app.get('/firebase-config', (req, res) => {
 });
 
 // Start server on port 3000
-const port = 3000;
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
-});
