@@ -1,4 +1,65 @@
+// public/script.js
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js';
+import { getFirestore, doc, getDoc } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
+
+// Global variables
+let firebaseApp;
+let db;
+
+// Initialize Firebase and return a promise
+async function initializeFirebase() {
+  try {
+    const response = await fetch('/firebase-config');
+    const firebaseConfig = await response.json();
+    
+    // Initialize Firebase with v9 SDK
+    firebaseApp = initializeApp(firebaseConfig);
+    db = getFirestore(firebaseApp);
+    
+    console.log('Firebase initialized successfully');
+    return true;
+  } catch (error) {
+    console.error('Error initializing Firebase:', error);
+    return false;
+  }
+}
+
+// Function to get the "nome" property of document "1" in the "users" collection
+async function getUserNome() {
+  try {
+    // Make sure Firebase is initialized first
+    if (!db) {
+      const initialized = await initializeFirebase();
+      if (!initialized) {
+        console.error("Failed to initialize Firebase");
+        return;
+      }
+    }
+    
+    // Now we can safely use Firestore
+    const userDocRef = doc(db, "users", "1");
+    const userDocSnap = await getDoc(userDocRef);
+
+    if (userDocSnap.exists()) {
+      console.log("User nome:", userDocSnap.data().nome);
+    } else {
+      console.log("No such document!");
+    }
+  } catch (error) {
+    console.error("Error getting document:", error);
+  }
+}
+
+// Initialize Firebase when the page loads
+window.onload = async function() {
+  await initializeFirebase();
+  getUserNome();
+};
+
+// Make function available globally
+window.getUserNome = getUserNome;
 window.onload = function () {
+    getUserNome();
     //TODO:CONTAS E RESOLVER NAN E ERROS MAIS BONITOS 
     var ectsArray = [];
     var notasArray = [];
@@ -10,6 +71,8 @@ window.onload = function () {
     var counter = 0
     var removeadd 
     var final;
+
+    
 
     function saveTableData() {
         let tableData = [];

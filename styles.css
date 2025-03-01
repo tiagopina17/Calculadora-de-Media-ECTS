@@ -1,5 +1,7 @@
 body{
-    background-color: #121212 !important;
+    background-image: url("./imgs/bg10.png") ;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
     overflow-x: hidden !important;
     max-width: 100% !important;
 
@@ -42,6 +44,7 @@ footer p{
     background: rgb(125,72,151);
     background: linear-gradient(180deg, rgba(125,72,151,1) 0%, rgba(217,46,58,1) 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 
 }
@@ -86,4 +89,20 @@ img{
 
 .modal-content,  .modal-body, .modal-footer {
     border: none !important;
+}
+
+button#arrowwhite.accordion-button.bg-dark.text-light.custom-button::after{
+    background-image: url("./imgs/arrowhite.svg") !important;
+}
+
+.accordion-body img {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block !important;
+    margin-top: 10px !important;
+    width: 100% !important;
+}
+
+#faqlink{
+    color: #ffffff !important;
 }

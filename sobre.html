@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Calculador de Média do Ensino Superior</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <header class="col-lg-12 col-md-12 col-sm-auto">
+        <nav class="navbar navbar-expand-md sticky-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html"><img src="imgs/calculator.png" alt="Logo"></a>
+                <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link " href="index.html"><h4 class="fw-semibold nav-texto mx-2 text-light">CALCULADORA</h4></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="sobre.html"><h4 class="fw-semibold nav-texto mx-2 text-light">FAQ</h4></a>
+                        </li>
+                    </ul>
+
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><h4 class="fw-semibold nav-texto mx-2 text-light">SOON...</h4></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+        
+    <div class="container d-flex justify-content-center">
+        <div class="accordion col-10 mt-5" id="accordionExample">
+            <div class="accordion-item bg-secondary text-light">
+                <h2 class="accordion-header">
+                    <button class="accordion-button bg-dark text-light custom-button fw-bold fs-4" id="arrowwhite" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        O que é isto?
+                    </button>
+                    </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                    <div class="accordion-body fw-semibold  ">
+                        Calculadora de Média do Ensino Superior 👍<br>
+                        .<br>
+                        .<br>
+                        .<br>
+                        Vá, agora a sério. Esta é uma ferramente que te permite calcular a tua média do ensino superior inserindo o número de créditos e a nota de cada cadeira.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item bg-secondary text-light">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed bg-dark text-light custom-button fw-bold fs-4" id="arrowwhite" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        E em que é que me ajuda?
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body fw-semibold">
+                        Embora algumas Universidades tenham os seus próprias sistemas que calculam a tua média, com esta ferramenta podes fazer contas ao teu futuro e ter uma noção de como as futuras cadeiras podem aumentar ou diminui a tua média ou analisar se vale a pena ires a um certo recurso ou não. 
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item bg-secondary text-light">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed bg-dark text-light custom-button fw-bold fs-4" id="arrowwhite" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Porque é que fazes isto?
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body fw-semibold">
+                        Sou maluco!
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item bg-secondary text-light">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed bg-dark text-light custom-button fw-bold fs-4" id="arrowwhite" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Eu sei a minha média atual e quero saber como o futuro me vai afetar. Preciso de adicionar todas as cadeiras que já fiz manualmente?
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body fw-semibold">
+                        Não! Imaginemos que já sabes a média do teu primeiro ano (equivalente a 60 ECTS). Podes inserir a tua média atual e o número de ECTS (60) no primeiro campo e as outras cadeiras nos outros campos. Por exemplo: <br><img src="imgs/exemplo.png"  alt="Exemplo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Correct script order and avoid duplicates -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script type="module" src="script.js"></script>
+</body>
+</html>
+
+
+  
