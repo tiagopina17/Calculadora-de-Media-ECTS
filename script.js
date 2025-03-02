@@ -10,7 +10,10 @@ function updateImageSource() {
 
 window.onload = function () {
     console.log("2")
-    updateImageSource();
+    
+    if (window.location.pathname.endsWith("sobre.html")) {
+        updateImageSource();
+    }
 
     var ectsArray = [];
     var notasArray = [];
