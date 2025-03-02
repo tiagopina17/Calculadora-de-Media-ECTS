@@ -1,20 +1,31 @@
-body{
-    background-image: url("./imgs/bg10.png") ;
+/* Ensure body layout pushes footer down */
+body {
+    background-image: url("./imgs/bg10.png");
     background-size: cover !important;
     background-repeat: no-repeat !important;
     overflow-x: hidden !important;
     max-width: 100% !important;
-
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: 100vh !important;
+    background-attachment: fixed !important;
+    position: relative; /* Establish positioning context */
+    background-position: center center !important;
 }
 
-nav{
+html, body {
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+nav {
     background-color: #7d4897;
 }
 
-#botao3{
+#botao3 {
     display: inline-block;
 }
-
 
 .row {
     margin: auto !important;
@@ -25,39 +36,42 @@ nav{
     word-wrap: break-word;
 }
 
-footer{
+footer {
     background-color: #7d4897;
     margin-left: 0;
     margin-right: 0;
-
     --bs-gutter-x: 0 !important;
-
+    flex-shrink: 0;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    position: relative; /* Change from sticky/fixed if it was */
+    z-index: 1; /* Lower z-index so content appears above */
+    margin-top: auto; /* Push to the bottom of the flex container */
 }
-
-footer p{
-    margin-top: 5px ;
+footer p {
+    margin-top: 5px;
     margin-bottom: 10px;
     margin-left: 15px;
 }
 
-.titulo{
+.titulo {
     background: rgb(125,72,151);
     background: linear-gradient(180deg, rgba(125,72,151,1) 0%, rgba(217,46,58,1) 100%);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-
 }
 
 table {
-    border-collapse:separate !important;
-    border:solid black 1px !important;
-    border-radius:6px !important;
+    border-collapse: separate !important;
+    border: solid black 1px !important;
+    border-radius: 6px !important;
 }
 
 td, th {
-    border-left:solid black 1px !important;
-    border-top:solid black 1px !important;
+    border-left: solid black 1px !important;
+    border-top: solid black 1px !important;
 }
 
 th {
@@ -68,17 +82,16 @@ td:first-child, th:first-child {
     border-left: none !important;
 }
 
-#logo{
+#logo {
     max-height: 5% !important;
     max-width: 5% !important;
-
 }
 
-img{
+img {
     width: 40px;
 }
 
-.disabled{
+.disabled {
     opacity: 70%;
 }
 
@@ -87,22 +100,73 @@ img{
     text-align: center; /* Keeps text centered */
 }
 
-.modal-content,  .modal-body, .modal-footer {
+.modal-content, .modal-body, .modal-footer {
     border: none !important;
 }
 
-button#arrowwhite.accordion-button.bg-dark.text-light.custom-button::after{
+button#arrowwhite.accordion-button.bg-dark.text-light.custom-button::after {
     background-image: url("./imgs/arrowhite.svg") !important;
 }
 
 .accordion-body img {
     max-width: 100% !important;
+    min-height: 30vh !important;
+    min-width: 20vw !important;
+
     height: auto !important;
     display: block !important;
     margin-top: 10px !important;
     width: 100% !important;
 }
 
-#faqlink{
+#faqlink {
     color: #ffffff !important;
+}
+
+.container {
+    flex-grow: 1; /* Pushes the footer down */
+}
+
+/* New accordion fixes */
+.accordion-item {
+    height: auto !important;
+    overflow: visible !important;
+    z-index: 2; /* Higher z-index than footer */
+    position: relative; /* Establish stacking context */
+}
+
+.accordion-body {
+    overflow: visible !important; /* Allow content to be visible */
+    height: auto !important;
+    padding-bottom: 20px !important; /* Add some extra padding at the bottom */
+}
+
+/* Make sure the accordion collapse transition works properly */
+.accordion-collapse {
+    transition: height 0.3s ease !important;
+}
+
+/* Ensure container expands with accordion content */
+.container.d-flex.justify-content-center {
+    margin-bottom: 20px !important; /* Add margin to separate from footer */
+    padding-bottom: 20px !important;
+    z-index: 2; /* Higher z-index than footer */
+    position: relative; /* Establish stacking context */
+}
+
+/* Ensure mobile devices handle the accordion properly */
+@media (max-width: 768px) {
+    .accordion {
+        width: 100% !important;
+    }
+    
+    .accordion-body {
+        padding: 15px !important;
+    }
+    
+ 
+}
+
+main, .container {
+    flex: 1 0 auto; /* Grow but don't shrink */
 }
