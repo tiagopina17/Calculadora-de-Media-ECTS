@@ -178,22 +178,21 @@ window.onload = function () {
             ectsFinal = ectsArray.map(item => item.replace(/,/g, '.'));
             notasFinal = notasArray.map(item => item.replace(/,/g, '.'));
             resultado.push(ectsFinal[i - 1] * notasFinal[i - 1]);
-            var somaEcts = ectsFinal.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue), 0);
-            var somaTudo = resultado.reduce((accumulator, currentValue) => accumulator + parseInt(currentValue), 0);
+            var somaEcts = ectsFinal.reduce((accumulator, currentValue) => accumulator + parseFloat(currentValue), 0);
+            var somaTudo = resultado.reduce((accumulator, currentValue) => accumulator + parseFloat(currentValue), 0);
             final = somaTudo / somaEcts
         }
         if (ectsArray.includes("") || notasArray.includes("")) {
             document.getElementById("modalErrosTexto").innerHTML = "Um dos campos está vazio. Por favor preenche todos os campos!"   
             var myModal2 = new bootstrap.Modal(document.getElementById('modalErros'));
             myModal2.show();
-        } else if (ectsArray.some(number => number < 0 || number.toString().includes(".") || number.toString().includes(",")) || notasArray.some(number => number < 0 || number.toString().includes(".") || number.toString().includes(","))) {
-            document.getElementById("modalErrosTexto").innerHTML = "Só podes inserir números positivos inteiros! Suporte para números decimais brevemente!"    
-            var myModal2 = new bootstrap.Modal(document.getElementById('modalErros'));
-            myModal2.show();
+      
         } else {
             console.log(counter)
             console.log(ectsArray)
+            console.log(notasArray)
             console.log(ectsFinal)
+            console.log(notasFinal)
             console.log(somaTudo)
             console.log(somaEcts)
             console.log(final)

@@ -118,9 +118,6 @@ button#arrowwhite.accordion-button.bg-dark.text-light.custom-button::after {
     width: 100% !important;
 }
 
-#faqlink {
-    color: #ffffff !important;
-}
 
 .container {
     flex-grow: 1; /* Pushes the footer down */
